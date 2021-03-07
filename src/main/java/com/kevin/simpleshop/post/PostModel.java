@@ -2,20 +2,21 @@ package com.kevin.simpleshop.post;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.util.UUID;
 
 @Entity
 public class PostModel {
     @Id
-    private String id;
+    private UUID id;
     private String title;
     private String price;
     private String description;
 
-    public String getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
