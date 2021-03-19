@@ -7,18 +7,16 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Title</title>
-</head>
-<body>
-<h1> List Page</h1>
-<c:forEach items="${list}" var="postModel" varStatus="state">
-    <div class="row">
-        <div>${postModel.id}</div>
-        <div>${postModel.name}</div>
-        <div>${postModel.description}</div>
-    </div>
-</c:forEach>
-</body>
-</html>
+<%@include file="../header.jsp"%>
+<div>
+    <h1> List Page</h1>
+    <c:forEach items="${list}" var="postModel" varStatus="state">
+        <div class="row">
+            <div>${postModel.id}</div>
+            <div>${postModel.title}</div>
+            <div>${postModel.description}</div>
+        </div>
+    </c:forEach>
+</div>
+<%@include file="../footer.jsp"%>
+

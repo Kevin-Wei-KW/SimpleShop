@@ -30,7 +30,7 @@ public class PostController {
         postModel = postService.save(postModel);
         m.addAttribute("postModel", postModel);
         m.addAttribute("saveMessage", "save success");
-        return "post/list";
+        return this.edit(postModel.getId(), m);
     }
 
     @GetMapping({"/edit/{id}", "/edit"})
@@ -41,4 +41,5 @@ public class PostController {
        }
        return"post/edit";
     }
+
 }
