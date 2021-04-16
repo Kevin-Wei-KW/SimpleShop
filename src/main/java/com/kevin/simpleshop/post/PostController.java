@@ -29,7 +29,7 @@ public class PostController {
     public String save(@ModelAttribute PostModel postModel, Model m) throws Exception {
         postModel = postService.save(postModel);
         m.addAttribute("postModel", postModel);
-        m.addAttribute("saveMessage", "save success");
+        m.addAttribute("saveMessage", "Save Success!");
         return this.edit(postModel.getId(), m);
     }
 
@@ -40,6 +40,15 @@ public class PostController {
            m.addAttribute("postModel", postModel);
        }
        return"post/edit";
+    }
+
+    @GetMapping({"/detail/{id}", "/detail"})
+    public String detail(@PathVariable(required = false) UUID id, Model m) throws Exception{
+        if(id != null) {
+            PostModel postModel = postService.get(id);
+            m.addAttribute("postModel", postModel);
+        }
+        return"post/detail";
     }
 
 }

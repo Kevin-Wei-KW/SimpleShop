@@ -3,5 +3,10 @@
 }
 
 #header a{
-    color: aquamarine;
+    color: red;
+}
+
+.title {
+    color: darkblue;
+    text-align: center;
 }

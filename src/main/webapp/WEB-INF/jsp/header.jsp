@@ -12,14 +12,14 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
           integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
-    <link href="/assets/style.css" rel="stylesheet">
+    <link href="/assets/style.css/jsp/post/style.css/style.css" rel="stylesheet">
 </head>
 
 <body>
 <header id="header">
     <nav class="navbar fixed-top  navbar-expand-lg" style="background-color: black">
         <div class="container">
-            <a class="navbar-brand" href="/">ST.GEORGE'S SCHOOL</a>
+            <a class="navbar-brand" href="/post/list">A Simple Shop</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="Toggle navigation"
@@ -52,7 +52,7 @@
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
                     <a class="btn btn-outline-success my-2 my-sm-0" type="submit" style="margin-right: 8px"
-                            href="/post/edit/${postModel.id}">New Post
+                            href="/post/edit/">New Post
                     </a>
                     <input class="form-control" type="search" placeholder="Search" aria-label="Search"
                            style="width: auto;">
