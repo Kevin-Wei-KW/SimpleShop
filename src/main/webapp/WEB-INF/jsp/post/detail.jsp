@@ -27,13 +27,14 @@
                 <div class="row">
                     <div class="info">
                         <pre>${postModel.getDescription()}</pre>
+                        <h1>Category: ${postModel.getCategory()}</h1>
                     </div>
                 </div>
-<%--                <div class="row">--%>
-<%--                    <form action="/post/edit/${postModel.getId()}">--%>
-<%--                        <button type="submit">Edit</button>--%>
-<%--                    </form>--%>
-<%--                </div>--%>
+                <div class="row">
+                    <form action="/post/edit/${postModel.getId()}">
+                        <button type="submit">Edit</button>
+                    </form>
+                </div>
             </div>
 
 

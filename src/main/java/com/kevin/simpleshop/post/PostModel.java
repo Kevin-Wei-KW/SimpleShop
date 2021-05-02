@@ -1,10 +1,10 @@
 package com.kevin.simpleshop.post;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.kevin.simpleshop.user.UserModel;
+
+import javax.persistence.*;
 import java.util.UUID;
+
 
 @Entity
 public class PostModel {
@@ -14,6 +14,12 @@ public class PostModel {
     private String title;
     private String price;
     private String description;
+    public enum Ecategory{
+        BOOKS, ELECTRONICS, SPORTS, VEHICLES, CLOTHES, FURNITURE
+    }
+    private Ecategory category;
+    @ManyToOne
+    private UserModel user;
 
     public UUID getId() {
         return id;
@@ -45,5 +51,13 @@ public class PostModel {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Ecategory getCategory() {
+        return category;
+    }
+
+    public void setCategory(Ecategory c) {
+        this.category = c;
     }
 }
