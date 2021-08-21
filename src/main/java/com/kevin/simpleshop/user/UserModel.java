@@ -15,10 +15,10 @@ public class UserModel {
     private String displayName;
     private String password;
 
-    public String getUsername(){
+    public String getEmail(){
         return email;
     }
-    public void setUsername(String e){
+    public void setEmail(String e){
         email = e;
     }
     public String getDisplayname(){

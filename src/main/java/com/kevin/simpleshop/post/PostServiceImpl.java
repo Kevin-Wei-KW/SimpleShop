@@ -21,7 +21,7 @@ public class PostServiceImpl {
         return postModel;
     }
 
-    public List<PostModel> search(String keyword, int pageNo, int pageSize) throws Exception{
-        return postRepository.findAll();
+    public List<PostModel> search(PostModel.ECategory category, String keyword, int pageNo, int pageSize) throws Exception{
+        return postRepository.findByCategoryAndKeyword(category, keyword);
     }
 }

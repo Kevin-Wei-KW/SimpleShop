@@ -22,4 +22,9 @@ public class UserServiceImpl {
         UserModel userModel = userRepository.getOne(id);
         return userModel;
     }
+
+    public UserModel getByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
+
 }

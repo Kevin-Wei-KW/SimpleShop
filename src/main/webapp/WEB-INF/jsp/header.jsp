@@ -50,11 +50,11 @@
                     <%--          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>--%>
                     <%--        </li>--%>
                 </ul>
-                <form class="form-inline my-2 my-lg-0">
-                    <a class="btn btn-outline-success my-2 my-sm-0" type="submit" style="margin-right: 8px"
-                            href="/post/edit/">New Post
-                    </a>
-                    <input class="form-control" type="search" placeholder="Search" aria-label="Search"
+                <a class="btn btn-outline-success my-2 my-sm-0" type="submit" style="margin-right: 8px"
+                   href="/post/edit/">New Post
+                </a>
+                <form class="form-inline my-2 my-lg-0" action="<%=request.getContextPath()%>/post/list" method="get">
+                    <input class="form-control" name="keyword" type="search" placeholder="Search" aria-label="Search"
                            style="width: auto;">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="margin-left: 8px">Search
                     </button>
