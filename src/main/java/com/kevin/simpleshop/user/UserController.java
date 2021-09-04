@@ -64,7 +64,7 @@ public class UserController {
         if(user != null && user.getPassword().equals(md5(password))) {
             m.addAttribute("message", "Welcome, " + user.getDisplayName());
             httpSession.setAttribute("loggedInUser", user);
-            return "/post/list";
+            return "redirect:/";
         }
 
         m.addAttribute("message", "Incorrect Username or Password");

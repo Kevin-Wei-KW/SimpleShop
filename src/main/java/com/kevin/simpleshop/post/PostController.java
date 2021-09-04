@@ -29,23 +29,39 @@ public class PostController {
                          @RequestParam(required = false) String keyword,
                          @RequestParam(required = false, defaultValue = "0") int pageNo,
                          @RequestParam(required = false, defaultValue = "20") int pageSize,
-                         HttpSession httpSession,
                          Model m) throws Exception{
-        UserModel userModel = null;
-        if(httpSession != null) {
-            userModel = (UserModel) httpSession.getAttribute("loggedInUser");
-        }
         List<PostModel> list = postService.search(category, keyword, pageNo, pageSize);
         m.addAttribute("list", list);
         m.addAttribute("category", category);
         m.addAttribute("keyword", keyword);
-        m.addAttribute("userModel", userModel);
 
         return "post/list";
     }
 
+    @GetMapping({"/myPosts"})
+    public String myPosts(HttpSession httpSession, Model m) throws Exception {
+        UserModel userModel = (UserModel)httpSession.getAttribute("loggedInUser");
+
+        if(userModel == null) {
+            m.addAttribute("message", "Not Logged In");;
+            return "redirect:/user/login";
+        }
+
+        List<PostModel> list = postService.getByUser(userModel);
+        m.addAttribute("list", list);
+
+        return "post/list";
+
+    }
+
     @PostMapping("/save")
-    public String save(@ModelAttribute PostModel postModel, @RequestParam("files") MultipartFile[] files, Model m) throws Exception {
+    public String save(@ModelAttribute PostModel postModel, @RequestParam("files") MultipartFile[] files, HttpSession httpSession, Model m) throws Exception {
+        UserModel userModel = (UserModel)httpSession.getAttribute("loggedInUser");
+        if(userModel == null) {
+            m.addAttribute("message", "Not Logged In");
+            return "redirect:/user/login";
+        }
+
         List<String> newFileNames = new ArrayList<>();
         if(files != null) {
             for(MultipartFile file: files) {
@@ -59,6 +75,7 @@ public class PostController {
         }
         if(postModel.getId()==null){
             postModel.setAllURL(newFileNames);
+            postModel.setUser(userModel);
             postModel = postService.save(postModel);
         }else{
             PostModel postDB = postService.get(postModel.getId());
@@ -71,7 +88,7 @@ public class PostController {
 
         m.addAttribute("postModel", postModel);
         m.addAttribute("saveMessage", "Save Success!");
-        return this.edit(postModel.getId(), m);
+        return this.edit(postModel.getId(), httpSession, m);
     }
 
     public String getExtensionByStringHandling(String originalFileName) {
@@ -89,8 +106,14 @@ public class PostController {
     }
 
     @GetMapping({"/edit/{id}", "/edit"})
-    public String edit(@PathVariable(required = false) UUID id, Model m) throws Exception{
-       if(id != null) {
+    public String edit(@PathVariable(required = false) UUID id, HttpSession httpSession, Model m) throws Exception{
+        UserModel userModel = (UserModel)httpSession.getAttribute("loggedInUser");
+        if(userModel == null) {
+            m.addAttribute("message", "Not Logged In");
+            return "redirect:/user/login";
+        }
+
+        if(id != null) {
            PostModel postModel = postService.get(id);
            m.addAttribute("postModel", postModel);
        }

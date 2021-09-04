@@ -1,5 +1,6 @@
 package com.kevin.simpleshop.post;
 
+import com.kevin.simpleshop.user.UserModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -15,4 +16,5 @@ public interface PostRepository extends JpaRepository<PostModel, UUID> {
     "AND (:keyword is null or p.title like %:keyword% or p.description like %:keyword%)")
 
     public List<PostModel> findByCategoryAndKeyword(PostModel.ECategory category, String keyword);
+    public List<PostModel> findByUser(UserModel user);
 }

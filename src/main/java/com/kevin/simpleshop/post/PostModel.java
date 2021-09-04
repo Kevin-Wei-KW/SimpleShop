@@ -160,4 +160,12 @@ public class PostModel {
         this.category = c;
     }
 
+    public UserModel getUser() {
+        return user;
+    }
+
+    public void setUser(UserModel userModel) {
+        user = userModel;
+    }
+
 }

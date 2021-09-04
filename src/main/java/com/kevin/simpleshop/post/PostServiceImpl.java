@@ -1,5 +1,6 @@
 package com.kevin.simpleshop.post;
 
+import com.kevin.simpleshop.user.UserModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,10 @@ public class PostServiceImpl {
     public PostModel get(UUID id) throws Exception{
         PostModel postModel = postRepository.getOne(id);
         return postModel;
+    }
+
+    public List<PostModel> getByUser(UserModel user) throws Exception {
+        return postRepository.findByUser(user);
     }
 
     public List<PostModel> search(PostModel.ECategory category, String keyword, int pageNo, int pageSize) throws Exception{
