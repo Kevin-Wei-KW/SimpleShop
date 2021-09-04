@@ -1,5 +1,6 @@
 package com.kevin.simpleshop.post;
 
+import com.kevin.simpleshop.user.UserModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -7,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,11 +29,18 @@ public class PostController {
                          @RequestParam(required = false) String keyword,
                          @RequestParam(required = false, defaultValue = "0") int pageNo,
                          @RequestParam(required = false, defaultValue = "20") int pageSize,
+                         HttpSession httpSession,
                          Model m) throws Exception{
+        UserModel userModel = null;
+        if(httpSession != null) {
+            userModel = (UserModel) httpSession.getAttribute("loggedInUser");
+        }
         List<PostModel> list = postService.search(category, keyword, pageNo, pageSize);
         m.addAttribute("list", list);
         m.addAttribute("category", category);
         m.addAttribute("keyword", keyword);
+        m.addAttribute("userModel", userModel);
+
         return "post/list";
     }
 

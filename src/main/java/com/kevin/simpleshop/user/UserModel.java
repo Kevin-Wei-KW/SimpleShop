@@ -9,28 +9,45 @@ import java.util.*;
 
 @Entity
 public class UserModel {
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
     private String email;
     private String displayName;
     private String password;
 
-    public String getEmail(){
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public String getEmail() {
         return email;
     }
-    public void setEmail(String e){
-        email = e;
+
+    public void setEmail(String email) {
+        this.email = email;
     }
-    public String getDisplayname(){
+
+    public String getDisplayName() {
         return displayName;
     }
-    public void setDisplayName(String d){
-        displayName = d;
+
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
     }
-    public String getPassword(){
+
+    public String getPassword() {
         return password;
     }
-    public void setPassword(String p){
-        password = p;
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

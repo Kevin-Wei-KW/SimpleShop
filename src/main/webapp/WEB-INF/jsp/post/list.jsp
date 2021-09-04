@@ -29,7 +29,7 @@
     <div class="col-md-9">
         <div class="row">
             <c:forEach items="${list}" var="postModel" varStatus="state">
-
+<%--                <c:if test="${userModel == null || userModel.}"--%>
                 <div class="col-md-4" style="padding: 5px">
                     <a href="/post/detail/${postModel.id}">
                         <div class="card" style="color: #333333; padding: 5px">

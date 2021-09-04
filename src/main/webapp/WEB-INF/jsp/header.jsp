@@ -53,13 +53,22 @@
                 <a class="btn btn-outline-success my-2 my-sm-0" type="submit" style="margin-right: 8px"
                    href="/post/edit/">New Post
                 </a>
+                <a class="btn btn-outline-success my-2 my-sm-0" type="submit" style="margin-right: 8px"
+                   href="/post/list/">My Posts
+                </a>
                 <form class="form-inline my-2 my-lg-0" action="<%=request.getContextPath()%>/post/list" method="get">
                     <input class="form-control" name="keyword" type="search" placeholder="Search" aria-label="Search"
                            style="width: auto;">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="margin-left: 8px">Search
                     </button>
                 </form>
-                <a class="nav-link" href="#">Login / Register</a>
+                <c:if test="${sessionScope.loggedInUser != null}">
+                    <a class="nav-link" href="/user/profile">Hello, ${sessionScope.loggedInUser.getDisplayName()}</a>
+                    <a class="nav-link" href="/user/logout">Logout</a>
+                </c:if>
+                <c:if test="${sessionScope.loggedInUser == null}">
+                    <a class="nav-link" href="/user/login">Login / Register</a>
+                </c:if>
             </div>
         </div>
     </nav>
