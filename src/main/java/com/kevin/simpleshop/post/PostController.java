@@ -3,6 +3,10 @@ package com.kevin.simpleshop.post;
 import com.kevin.simpleshop.user.UserModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -29,9 +33,13 @@ public class PostController {
                          @RequestParam(required = false) String keyword,
                          @RequestParam(required = false, defaultValue = "0") int pageNo,
                          @RequestParam(required = false, defaultValue = "20") int pageSize,
+                         @PageableDefault(size = 20, direction = Sort.Direction.DESC, sort = {"createdDate"}) Pageable page,
                          Model m) throws Exception{
-        List<PostModel> list = postService.search(category, keyword, pageNo, pageSize);
-        m.addAttribute("list", list);
+        Page<PostModel> pageList = postService.search(category, keyword, pageNo, pageSize, page);
+
+        m.addAttribute("pageList", pageList);
+        m.addAttribute("pageTitle", "My Posts");
+
         m.addAttribute("category", category);
         m.addAttribute("keyword", keyword);
 
@@ -39,7 +47,7 @@ public class PostController {
     }
 
     @GetMapping({"/myPosts"})
-    public String myPosts(HttpSession httpSession, Model m) throws Exception {
+    public String myPosts(@PageableDefault(size = 20, direction = Sort.Direction.DESC, sort = {"createdDate"}) Pageable page, HttpSession httpSession, Model m) throws Exception {
         UserModel userModel = (UserModel)httpSession.getAttribute("loggedInUser");
 
         if(userModel == null) {
@@ -47,8 +55,10 @@ public class PostController {
             return "redirect:/user/login";
         }
 
-        List<PostModel> list = postService.getByUser(userModel);
-        m.addAttribute("list", list);
+        //Pageable pageable = PageRequest.of(0, 10, Sort.by(Sort.Order.asc("name"), Sort.Order.desc("id")));
+        Page<PostModel> pageList = postService.getByUser(userModel, page);
+        m.addAttribute("pageList", pageList);
+        m.addAttribute("pageTitle", "My Posts");
 
         return "post/list";
 

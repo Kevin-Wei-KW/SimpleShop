@@ -3,6 +3,7 @@ package com.kevin.simpleshop.post;
 import com.kevin.simpleshop.user.UserModel;
 
 import javax.persistence.*;
+import java.text.SimpleDateFormat;
 import java.util.UUID;
 import java.util.*;
 
@@ -15,6 +16,7 @@ public class PostModel {
     private String title;
     private String price;
     private String description;
+    private Date createdDate;
     private String picURL0;
     private String picURL1;
     private String picURL2;
@@ -22,7 +24,7 @@ public class PostModel {
     private String picURL4;
 
     public enum ECategory{
-        BOOKS, ELECTRONICS, SPORTS, VEHICLES, CLOTHES, FURNITURE
+        Uniforms, Books, Electronics, Sports, Instruments, Others;
     }
     private ECategory category;
     @ManyToOne
@@ -58,6 +60,22 @@ public class PostModel {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Date getCreatedDate() {
+        return createdDate;
+    }
+
+    public String getCreatedDateText(){
+        if(getCreatedDate()!=null){
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY-MM-dd");
+            return simpleDateFormat.format(getCreatedDate());
+        }
+        return "";
+    }
+
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
     }
 
     public String getPicURL0() {
@@ -167,5 +185,7 @@ public class PostModel {
     public void setUser(UserModel userModel) {
         user = userModel;
     }
+
+
 
 }

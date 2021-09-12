@@ -15,7 +15,7 @@ public class HomeController {
 
     @GetMapping("/")
     public String homePage(Model m) throws Exception{
-        return "redirect:/post/list";
+        return "post/list";
     }
 
 }

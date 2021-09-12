@@ -2,6 +2,8 @@ package com.kevin.simpleshop.post;
 
 import com.kevin.simpleshop.user.UserModel;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,11 +24,11 @@ public class PostServiceImpl {
         return postModel;
     }
 
-    public List<PostModel> getByUser(UserModel user) throws Exception {
-        return postRepository.findByUser(user);
+    public Page<PostModel> getByUser(UserModel user, Pageable page) throws Exception {
+        return postRepository.findByUser(user, page);
     }
 
-    public List<PostModel> search(PostModel.ECategory category, String keyword, int pageNo, int pageSize) throws Exception{
-        return postRepository.findByCategoryAndKeyword(category, keyword);
+    public Page<PostModel> search(PostModel.ECategory category, String keyword, int pageNo, int pageSize, Pageable page) throws Exception{
+        return postRepository.findByCategoryAndKeyword(category, keyword, page);
     }
 }
