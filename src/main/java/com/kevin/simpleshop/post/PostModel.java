@@ -24,7 +24,7 @@ public class PostModel {
     private String picURL4;
 
     public enum ECategory{
-        Uniforms, Books, Electronics, Sports, Instruments, Others;
+        UNIFORMS, BOOKS, ELECTRONICS, SPORTS, INSTRUMENTS, OTHERS;
     }
     private ECategory category;
     @ManyToOne

@@ -28,7 +28,7 @@ public class PostServiceImpl {
         return postRepository.findByUser(user, page);
     }
 
-    public Page<PostModel> search(PostModel.ECategory category, String keyword, int pageNo, int pageSize, Pageable page) throws Exception{
+    public Page<PostModel> search(PostModel.ECategory category, String keyword, Pageable page) throws Exception{
         return postRepository.findByCategoryAndKeyword(category, keyword, page);
     }
 }

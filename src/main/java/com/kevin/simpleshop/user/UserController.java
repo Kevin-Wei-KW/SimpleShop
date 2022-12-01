@@ -57,6 +57,7 @@ public class UserController {
         return "user/login";
     }
 
+    Exception exp = new Exception();
     @PostMapping("/login")
     public String Login(@RequestParam String email, @RequestParam String password, Model m, HttpSession httpSession) throws Exception {
         UserModel user = userService.getByEmail(email);

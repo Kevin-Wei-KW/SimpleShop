@@ -8,7 +8,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="../header.jsp" %>
-
+<link href="../../../assets/style.css" rel="stylesheet">
 <div class="row">
     <div id="sideNav" class="col-md-3">
         <ul class="list-group">

@@ -31,14 +31,13 @@ public class PostController {
     @GetMapping({ "/list", "/list/{category}"})
     public String search(@PathVariable(name="category", required = false) PostModel.ECategory category,
                          @RequestParam(required = false) String keyword,
-                         @RequestParam(required = false, defaultValue = "0") int pageNo,
-                         @RequestParam(required = false, defaultValue = "20") int pageSize,
                          @PageableDefault(size = 20, direction = Sort.Direction.DESC, sort = {"createdDate"}) Pageable page,
                          Model m) throws Exception{
-        Page<PostModel> pageList = postService.search(category, keyword, pageNo, pageSize, page);
+
+        Page<PostModel> pageList = postService.search(category, keyword, page);
 
         m.addAttribute("pageList", pageList);
-        m.addAttribute("pageTitle", "My Posts");
+        m.addAttribute("pageTitle", "All Posts");
 
         m.addAttribute("category", category);
         m.addAttribute("keyword", keyword);
@@ -127,15 +126,22 @@ public class PostController {
            PostModel postModel = postService.get(id);
            m.addAttribute("postModel", postModel);
        }
+
        return"post/edit";
     }
 
-    @GetMapping({"/detail/{id}", "/detail"})
-    public String detail(@PathVariable(required = false) UUID id, Model m) throws Exception{
-        if(id != null) {
-            PostModel postModel = postService.get(id);
-            m.addAttribute("postModel", postModel);
+    @GetMapping({"/detail/{id}"})
+    public String detail(@PathVariable UUID id, HttpSession httpSession, Model m) throws Exception{
+        UserModel loginUser = (UserModel)httpSession.getAttribute("loggedInUser");
+        PostModel post = postService.get(id);
+        m.addAttribute("postModel", post);
+
+        if(loginUser == null || !loginUser.getId().equals(post.getUser().getId())) {
+            m.addAttribute("canEdit", false);
+        } else {
+            m.addAttribute("canEdit", true);
         }
+
         return"post/detail";
     }
 

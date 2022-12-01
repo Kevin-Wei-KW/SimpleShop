@@ -1,7 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="../header.jsp" %>
-<div class="container">
+<link href="../../../assets/style.css" rel="stylesheet">
+<div class="page-container">
   <div class="row">
     <div class="col-md-3 col-sm-1">
       <ul class="list-group">
@@ -76,7 +77,7 @@
         <div class="row">
           <c:forEach items="${pageList.content}" var="post" varStatus="state">
             <div class="col-md-3  col-sm-1" style="padding: 8px">
-              <a href="/post/view/${post.id}">
+              <a href="/post/detail/${post.id}">
                 <div class="card" style="color: #333333">
                   <c:if test="${post.picURL0.length()>0}">
                     <img src="${post.picURL0}"

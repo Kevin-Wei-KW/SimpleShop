@@ -91,6 +91,13 @@
         <div class="form-group" style="padding-top: 10px; padding-left:80px;padding-right:80px">
             <label for="Category">Category:</label>
             <div id="Category" class="row">
+
+                <div class="form-check ml-3">
+                    <input type="radio" class="form-check-input" name="category" id="uniforms"
+                           value="UNIFORMS" ${postModel.category=="UNIFORMS"?"checked":""}>
+                    <label class="form-check-label" for="books">Uniforms</label>
+                </div>
+
                 <div class="form-check ml-3">
                     <input type="radio" class="form-check-input" name="category" id="books"
                            value="BOOKS" ${postModel.category=="BOOKS"?"checked":""}>
@@ -104,10 +111,23 @@
                 </div>
 
                 <div class="form-check ml-3">
-                    <input type="radio" class="form-check-input" name="category" id="clothes"
-                           value="CLOTHES" ${postModel.category=="CLOTHES"?"checked":""}>
-                    <label class="form-check-label" for="clothes">Clothes</label>
+                    <input type="radio" class="form-check-input" name="category" id="sports"
+                           value="SPORTS" ${postModel.category=="SPORTS"?"checked":""}>
+                    <label class="form-check-label" for="books">Sports</label>
                 </div>
+
+                <div class="form-check ml-3">
+                    <input type="radio" class="form-check-input" name="category" id="instruments"
+                           value="INSTRUMENTS" ${postModel.category=="INSTRUMENTS"?"checked":""}>
+                    <label class="form-check-label" for="books">Instruments</label>
+                </div>
+
+                <div class="form-check ml-3">
+                    <input type="radio" class="form-check-input" name="category" id="otheres"
+                           value="OTHERS" ${postModel.category=="OTHERS"?"checked":""}>
+                    <label class="form-check-label" for="books">Others</label>
+                </div>
+
             </div>
         </div>
         <div style="padding-top: 12px">

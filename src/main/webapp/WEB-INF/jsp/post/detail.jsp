@@ -63,9 +63,11 @@
                     </div>
                 </div>
                 <div class="row">
-                    <form action="/post/edit/${postModel.getId()}">
-                        <button type="submit">Edit</button>
-                    </form>
+                    <c:if test="${canEdit == true}">
+                        <form action="/post/edit/${postModel.getId()}">
+                            <button type="submit">Edit</button>
+                        </form>
+                    </c:if>
                 </div>
             </div>
 
